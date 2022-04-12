@@ -3,7 +3,9 @@
 ## Configuration Git
 
 system: all users.
+
 global: all repositories of the current user.
+
 local: the current repository.
 
 config username and email address of our GitHub account:
