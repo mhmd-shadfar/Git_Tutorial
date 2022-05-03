@@ -650,8 +650,7 @@ don't rewrite public history it means that if we have pushed our commits to shar
 
         `git revert HEAD~2` for reverting two commits before where HEAD is pointing to.
 
-        `git rever HEAD~3..HEAD` for reverting a range for commit(e.g. last three commits)but it makes our history very noisy so it is better to revert all these commits using a single commit we can use 
-        the command below:
+        `git rever HEAD~3..HEAD` for reverting a range for commit(e.g. last three commits)but it makes our history very noisy so it is better to revert all these commits using a single commit we can use the command below:
 
         `git revert --no-commit HEAD~3..HEAD`
 
