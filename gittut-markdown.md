@@ -639,22 +639,38 @@ steps to create clean and readable history :
 **the golden rule of rewriting history**
 don't rewrite public history it means that if we have pushed our commits to share with others those commits consider public and we should not modify them.
 
-for Undoing a Commit:
-    * we have two options:
-        + 1. if we have pushed a commit to a remote repository base on the golden rule we should not remove this commit. here we should use the `revert` command to create a new commit that will do undo all the changes on this commit:
-        `git revert HEAD`
-        `git revert HEAD~2` for reverting two commits before where HEAD is pointing to.
-        `git rever HEAD~3..HEAD` for reverting a range for commit(e.g. last three commits)but it makes our history very noisy so it is better to revert all these commits using a single commit we can use the command below:
-        `git revert --no-commit HEAD~3..HEAD`
-        git will simply add the required changes in the staging area so for every commits that we are gonna revert git figures out changes that need to be undone then it will apply those changes in the staging area. and if we do something wrong in this process we can run `git revert --abort` or if we are happy with our changes we can run `git revert --continue` and then we can push this to the origin and share it with others.
-        + 2.if we have not pushed a commit to remote and it is only on our local repository we can use the `reset` command to remove this commit from the history:
-        `git reset --hard <target-position-from-HEAD-pointer>`
-        for example to get back to one commit before HEAD:
-        `git reset --hard HEAD~1`
-        if we use the `--soft` option in this command e.g. `git reset --soft HEAD~1` git simply moves the HEAD pointer to the target location but it is not gonna touch our staging area and working directory. --> **git only removes the commit**
-        if we use the `--mixed` option in this command e.g. `git reset --mixed HEAD~1` git simply move the HEAD pointer to the target location and put the latest snapshot in our stagging area but it is not gonna touch the working directory.--> **unstaged files**
-        if we use the `--hard` option in this command e.g. `git reset --hard HEAD~1` git simply move the HEAD pointer to the target location and put the latest snapshot in our staging area and working directory.--> **discards local changes**
+- for undoing a commit:
 
+  - we have two options:
+
+    - if we have pushed a commit to a remote repository base on the golden rule we should not remove this commit. here we should use the `revert` command to create a new commit that will do undo all
+        the changes on this commit:
+
+        `git revert HEAD`
+
+        `git revert HEAD~2` for reverting two commits before where HEAD is pointing to.
+
+        `git rever HEAD~3..HEAD` for reverting a range for commit(e.g. last three commits)but it makes our history very noisy so it is better to revert all these commits using a single commit we can use 
+        the command below:
+
+        `git revert --no-commit HEAD~3..HEAD`
+
+        git will simply add the required changes in the staging area so for every commits that we are gonna revert git figures out changes that need to be undone then it will apply those changes in the staging area. and if we do something wrong in this process we can run `git revert --abort` or if we are happy with our changes we can run `git revert --continue` and then we can push this to the origin and share it with others.
+
+    - if we have not pushed a commit to remote and it is only on our local repository we can use the `reset` command to remove this commit from the history:
+
+        `git reset --hard <target-position-from-HEAD-pointer>`
+
+        for example to get back to one commit before HEAD:
+
+        `git reset --hard HEAD~1`
+
+        if we use the `--soft` option in this command e.g. `git reset --soft HEAD~1` git simply moves the HEAD pointer to the target location but it is not gonna touch our staging area and working directory. --> **git only removes the commit**
+
+        if we use the `--mixed` option in this command e.g. `git reset --mixed HEAD~1` git simply move the HEAD pointer to the target location and put the latest snapshot in our stagging area but it is not gonna touch the working directory.--> **unstaged files**
+
+        if we use the `--hard` option in this command e.g. `git reset --hard HEAD~1` git simply move the HEAD pointer to the target location and put the latest snapshot in our staging area and working directory.--> **discards local changes**
+        
 if we want to recover lost commits we should reset HEAD to a commit that we want to we recover it.
 
 shows the history of HEAD:
